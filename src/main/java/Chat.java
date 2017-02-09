@@ -13,6 +13,7 @@ import org.eclipse.jetty.websocket.api.Session;
 
 import static j2html.TagCreator.*;
 
+
 public class Chat {
 
     // this map is shared between sessions and threads, so it needs to be thread-safe (http://stackoverflow.com/a/2688817)
@@ -24,7 +25,6 @@ public class Chat {
         webSocket("/chat", ChatWebSocketHandler.class);
         init();
     }
-
 
     //Sends a message from one user to all users, along with a list of current usernames
     public static void broadcastMessage(String sender, String message) {
