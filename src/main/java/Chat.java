@@ -5,13 +5,11 @@ import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static spark.Spark.staticFileLocation;
-import static spark.Spark.webSocket;
-import static spark.Spark.init;
-
 import org.eclipse.jetty.websocket.api.Session;
 
 import static j2html.TagCreator.*;
+
+import static spark.Spark.*;
 
 
 public class Chat {
@@ -21,6 +19,9 @@ public class Chat {
     static int nextUserNumber = 1; //Used for creating the next username
 
     public static void main(String[] args) {
+
+        port(Integer.valueOf(System.getenv("PORT")));
+
         staticFileLocation("/public"); //index.html is served at localhost:4567 (default port)
         webSocket("/chat", ChatWebSocketHandler.class);
         init();
